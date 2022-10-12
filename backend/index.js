@@ -2,6 +2,7 @@ const connection = require("./db/db");
 const express = require("express");
 const cors = require("cors");
 const RequestQoutesRoute = require("./routes/RequestQuotesRoute");
+const FindHSRoute = require("./routes/FindHSRoute");
 // App creation
 const app = express();
 //Needed middlewares
@@ -13,6 +14,7 @@ app.use(
     })
   );
 app.use("/NewRequestQuote",RequestQoutesRoute)
+app.use("/HSroute",FindHSRoute)
 //testing
 app.get("/",(req,res)=>{
   res.send("Request Quote backend working....")
