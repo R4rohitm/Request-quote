@@ -11,6 +11,7 @@ const RequestQuote = () => {
           <h3>Cargo details</h3>
           <h3>Product:</h3>
           <input type="text" />
+          <h3>Delivery:</h3>
        </div>
     </div>
     </>
