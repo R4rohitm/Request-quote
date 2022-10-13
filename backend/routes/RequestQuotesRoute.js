@@ -85,7 +85,24 @@ RQRoute.post("/newrequest", (req, res) => {
 
 RQRoute.get("/getall", async (req, res) => {
   const allrq = await RQ.find();
-  res.status(200).send(allrq);
+  if (allrq) {
+    return res.status(200).send(allrq);
+  } else {
+    return res.status(404).send({ Message: "No Data Found" });
+  }
+});
+
+RQRoute.get("/getone", async (req, res) => {
+  const { email } = req.body;
+
+  const getDetailsForOne = await RQ.findOne({ email: email });
+  if (getDetailsForOne) {
+    return res.status(200).send(getDetailsForOne);
+  } else {
+    return res
+      .status(404)
+      .send({ message: "Can not find details for entered email" });
+  }
 });
 
 module.exports = RQRoute;

@@ -2,8 +2,7 @@ const { Schema, model } = require("mongoose");
 
 const RequestQuoteSchema = new Schema({
   product_details: {
-    type: String,
-    required: [true, "Please enter valid product details"],
+    type: Object,
   },
   delivery_type: {
     type: String,
