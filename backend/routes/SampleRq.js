@@ -1,15 +1,56 @@
+// FCL
 {
-   "Product_details": "Name : Shirts, men's or boys' (not knitted or crocheted)  HS: 6205.00.00.00",
-   "Delivery":"SEA",
-   "Transportation_by":"FULL CONTAINER LOAD FCL",
-   "Container_type": "40' STANDARD",
-   "Quantity_Of_Container": 10,
-   "From": "Chennai,India",
-   "To": "San Francisco,USA",
-   "Ready_To_Load": "23/10/2022",
-   "Associated_services": "Insurence",
-   "First_name":"Jhon",
-   "Last_name":"Doe",
-   "Phone":"306-171-237",
-   "Email":"jhondoe@outlook.com"
+   "product_details": "Name : Shirts, men's or boys' (not knitted or crocheted)  HS: 6205.00.00.00",
+   "delivery_type":"SEA",
+   "transportation_by":"FULL CONTAINER LOAD FCL",
+   "container_type": "40' STANDARD",
+   "containers_quantity": 10,
+   "location_from": "Chennai,India",
+   "location_to": "San Francisco,USA",
+   "ready_to_load": "23/10/2022",
+   "associated_services": "Insurence",
+   "first_name":"Jhon",
+   "last_name":"Doe",
+   "phone":"306-171-237",
+   "email":"jhondoe@outlook.com"
+}
+
+
+// LCL
+
+{
+   "product_details": "Name : Shirts, men's or boys' (not knitted or crocheted)  HS: 6205.00.00.00",
+   "delivery_type":"Sea",
+   "transportation_by":"LCL",
+    "weight":10,
+    "volume":27,
+   "location_from": "Chennai,India",
+   "location_to": "San Francisco,USA",
+   "ready_to_load": "23/10/2022",
+   "associated_services": "Insurence",
+   "first_name":"Jhon",
+   "last_name":"Doe",
+   "phone":"306-171-237",
+   "email":"jhondoe@outlook.com"
+}
+
+
+// LCL By Units
+
+{
+   "product_details": "Name : Shirts, men's or boys' (not knitted or crocheted)  HS: 6205.00.00.00",
+   "delivery_type":"Sea",
+   "transportation_by":"LCL",
+    "byunits":true,
+    "dimensions":[{"width":10,"height":10,"length":20, "quantity":10, "gross_weight":27},{"width":30,"height":15,"length":20, "quantity":10, "gross_weight":27} ],
+    "quantity":10,
+    "gross_weight":27,
+   "location_from": "Chennai,India",
+   "location_to": "San Francisco,USA",
+   "ready_to_load": "23/10/2022",
+   "associated_services": "Insurence",
+   "first_name":"Jhon",
+   "last_name":"Doe",
+   "phone":"306-171-237",
+   "email":"jhondoe@outlook.com"
 }
