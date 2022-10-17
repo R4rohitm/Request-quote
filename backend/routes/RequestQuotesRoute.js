@@ -9,7 +9,7 @@ RQRoute.post("/newrequest", (req, res) => {
     transportation_by,
     weight,
     volume,
-    byunits,
+    by_units,
     dimensions,
     container_type,
     containers_quantity,
@@ -24,12 +24,12 @@ RQRoute.post("/newrequest", (req, res) => {
     email,
   } = req.body;
 
-  if (byunits) {
+  if (by_units) {
     const newrq = new RQ({
       product_details,
       delivery_type,
       transportation_by,
-      byunits,
+      by_units,
       dimensions,
       location_from,
       location_to,
