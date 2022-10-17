@@ -20,6 +20,7 @@ const RequestQuoteSchema = new Schema({
   dimensions: [],
   container_type: { type: String },
   containers_quantity: { type: Number },
+  bulk_details: { type: Object },
   location_from: {
     type: String,
     required: [true, "Please Enter Starting Destination"],
@@ -36,12 +37,10 @@ const RequestQuoteSchema = new Schema({
   phone: {
     type: String,
     required: [true, "Please Enter Valid Phone Number"],
-    unique: true,
   },
   email: {
     type: String,
     required: [true, "Please Enter a Valid Email Address"],
-    unique: true,
   },
 });
 

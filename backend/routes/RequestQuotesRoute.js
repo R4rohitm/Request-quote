@@ -71,15 +71,60 @@ RQRoute.post("/newrequest", (req, res) => {
       email,
     });
 
-    newrq
-      .save()
-      .then(() => {
-        res.send({
+    newrq.save((err, user) => {
+      if (err) {
+        return res.status(501).json({ status: "501", message: err.message });
+      } else {
+        return res.send({
           status: 200,
           message: "Request Quote created successfully",
         });
-      })
-      .catch((err) => console.log(err));
+      }
+    });
+  }
+});
+
+RQRoute.get("/getall/sea", async (req, res) => {
+  const query = req.query.transportation_by;
+
+  if (query) {
+    const allrq = await RQ.find({
+      delivery_type: "Sea",
+      transportation_by: query,
+    });
+    if (allrq) {
+      return res.status(200).send(allrq);
+    } else {
+      return res.status(404).send({ Message: "No Data Found" });
+    }
+  }
+  const allrq = await RQ.find({ delivery_type: "Sea" });
+  if (allrq) {
+    return res.status(200).send(allrq);
+  } else {
+    return res.status(404).send({ Message: "No Data Found" });
+  }
+});
+
+RQRoute.get("/getall/air", async (req, res) => {
+  const query = req.query.transportation_by;
+
+  if (query) {
+    const allrq = await RQ.find({
+      delivery_type: "Air",
+      transportation_by: query,
+    });
+    if (allrq) {
+      return res.status(200).send(allrq);
+    } else {
+      return res.status(404).send({ Message: "No Data Found" });
+    }
+  }
+  const allrq = await RQ.find({ delivery_type: "Sea" });
+  if (allrq) {
+    return res.status(200).send(allrq);
+  } else {
+    return res.status(404).send({ Message: "No Data Found" });
   }
 });
 

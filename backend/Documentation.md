@@ -17,6 +17,9 @@ This form will accept details like- 1. product_details, 2. delivery_type, 3. tra
 
     3. To get the deatails of one user/client using Email-
         /requestquote/getone
+        *(send email in body)
+
+<!--  -->
 
 // FCL
 {
@@ -24,7 +27,9 @@ This form will accept details like- 1. product_details, 2. delivery_type, 3. tra
 "discription":"Shirts, men's or boys' (not knitted or crocheted),Shirts, men's or boys' (not knitted or crocheted)",
 "hscode":"6205.00.00.00",
 "category":"Cotton",
-"level":"IV"},
+"level":"IV",
+"more_details":{"hazardous":true, "imo_class":"Explosives with a fire", "un_number":140012}
+},
 "delivery_type":"Sea",
 "transportation_by":"FCL",
 "container_type": "40' STANDARD",
@@ -46,7 +51,8 @@ This form will accept details like- 1. product_details, 2. delivery_type, 3. tra
 "discription":"Shirts, men's or boys' (not knitted or crocheted),Shirts, men's or boys' (not knitted or crocheted)",
 "hscode":"6205.00.00.00",
 "category":"Cotton",
-"level":"IV"},
+"level":"IV",
+"more_details":{"perishable":true, "temperature_type":"C", "temperature":23}},
 "delivery_type":"Sea",
 "transportation_by":"LCL",
 "weight":10,
@@ -68,7 +74,8 @@ This form will accept details like- 1. product_details, 2. delivery_type, 3. tra
 "discription":"Shirts, men's or boys' (not knitted or crocheted),Shirts, men's or boys' (not knitted or crocheted)",
 "hscode":"6205.00.00.00",
 "category":"Cotton",
-"level":"IV"},
+"level":"IV",
+"more_details":{"oversized_cargo":true, "dimensions":{"length":15,"width":20,"height":30}}},
 "delivery_type":"Sea",
 "transportation_by":"LCL",
 "byunits":true,
@@ -92,7 +99,8 @@ This form will accept details like- 1. product_details, 2. delivery_type, 3. tra
 "discription":"Shirts, men's or boys' (not knitted or crocheted),Shirts, men's or boys' (not knitted or crocheted)",
 "hscode":"6205.00.00.00",
 "category":"Cotton",
-"level":"IV"},
+"level":"IV",
+"more_details":{"liquid":true}},
 "delivery_type":"Air",
 "transportation_by":"SC",
 "byunits":true,
