@@ -140,7 +140,7 @@ RQRoute.get("/getall", async (req, res) => {
 RQRoute.get("/getone", async (req, res) => {
   const { email } = req.body;
 
-  const getDetailsForOne = await RQ.findOne({ email: email });
+  const getDetailsForOne = await RQ.find({ email: email });
   if (getDetailsForOne) {
     return res.status(200).send(getDetailsForOne);
   } else {
