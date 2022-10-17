@@ -4,7 +4,7 @@ const RequestQuoteSchema = new Schema({
   product_details: {
     type: Object,
   },
-  delivery_type: {
+  delivery_mode: {
     type: String,
     required: [true, "Please Choose A Delivery Type"],
     enum: ["Sea", "Air"],
@@ -25,12 +25,10 @@ const RequestQuoteSchema = new Schema({
   container_type: {
     type: String,
     required: [true, "Please Choose a container type"],
-    enum: ["20' Standard","40' Standard","40' High-Cube","20' Refrigerated","40' Refrigerated","20' Open Top","40' Open Top","20' Flatrack","40' Flatrack","20' Tank","40' Flatrack Collapsible","20' Flatrack Collapsible","20' Platform","40' Platform","20' Bulk","45' High-Cube","10' Standard"],
+    enum: ["20' Standard","40' Standard","40' High-Cube","20' Refrigerated","40' Refrigerated","20' Open Top","40' Open Top","20' Flatrack","40' Flatrack","20' Tank","40' Flatrack Collapsible","20' Flatrack Collapsible","20' Platform","40' Platform","20' Bulk","45' High-Cube","10' Standard","N/A"],
+    default:"N/A"
   },
-  containers_quantity: {  type: Number,
-    required: [true, "Please specify conatiner quantity"],
-    default: 0 },
-  bulk_details: { type: Object },
+  containers_quantity: { type: Number },
   location_from: {
     type: String,
     required: [true, "Please Enter Starting Destination"],
@@ -39,9 +37,7 @@ const RequestQuoteSchema = new Schema({
     type: String,
     required: [true, "Please Enter Ending Destination"],
   },
-  ready_to_load: { type: String ,
-    required: [true, "Please Enter Ending Destination"]
-  },
+  ready_to_load: { type: String },
   additional_information: { type: String },
   associated_services: { type: String },
   first_name: { type: String, required: [true, "Please Enter First Name"] },
