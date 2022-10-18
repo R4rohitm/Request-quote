@@ -128,7 +128,7 @@ This form will accept details like- 1. product_details, 2. delivery_type, 3. tra
 "more_details":{"hazardous":true, "imo_class":"Explosives with a fire", "un_number":140012}
 },
 "delivery_type":"Sea",
-"transportation_by":"FCL",
+"transportation_by":"Bulk",
 "bulk_details":{"ship_type":"Bulk Carriers","gross_weight":27, "loading_rate":10, "discharging_rate":20}
 "location_from": "Chennai,India",
 "location_to": "San Francisco,USA",
