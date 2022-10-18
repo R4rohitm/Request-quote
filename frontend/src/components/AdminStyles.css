@@ -13,8 +13,27 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
+    justify-content: space-between;
     padding: 15px;
 }
+
+.searchform{
+    border:1px solid blueviolet;
+    width:50%;
+    margin: auto;
+    height:50px;
+    border-radius: 5px;
+    background-color: #1f2937;
+    cursor: pointer;
+}
+input[type=text] {
+    width: 100%;
+    border: none;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #1f2937;
+    color: azure;
+  }
 .header1>img{
     width:150px;
     height:37px;
@@ -106,11 +125,7 @@
 .signlerq2>h1{
    font-size: 20px;
 }
-.signlerq2>button{
-    border: none;
-    padding:5px;
-    border-radius: 3px;
-}
+
 .green{
     background-color: green;
 }

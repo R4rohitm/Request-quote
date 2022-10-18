@@ -13,12 +13,25 @@ const Admin = () => {
         });
        },[])
 
-       console.log(rq);
+    const handleChange = (e)=>{
+      const formdata = {
+         email : e.target.vale
+      }
+      axios.get(`https://intoglo-first-api.herokuapp.com/requestquote/getone`,formdata)
+      .then(({data})=>{
+           setRq(data);
+      });
+    }
   return (
     <>
     <div className='header'>
      <div className='header1'>
        <img src="https://ik.imagekit.io/qtf62wap9/es/static/u/intoglo.com/images/logo/original/intoglo_logo.png?tr=w-150" alt="intoglo_logo" />
+       <div className='searchform'>
+       <form>
+       <input type="text" placeholder='Email....' onChange={handleChange}/>
+       </form>
+       </div> 
      </div>
     </div>
     <div className='body'>
@@ -76,22 +89,32 @@ const Admin = () => {
    </div>
 </aside>
       <div className='searchfil'>
-        <form>
-         <label>Search By Email:</label><br></br><br></br>
-         <input type="text" placeholder='Email...'/>
-        </form>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA</button>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">AIR</button>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">FCL</button>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">LCL</button>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + LCL</button>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + FCL</button>
+      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SC</button>
       </div>
+      </div>
+      <div>
+         
       </div>
       <div className='data'>
+         <div>
+            
+         </div>
        {rq && rq.map((e)=>{
         return (
             <>
+            
              <div className='singlerq'> 
              <div className='singlerq1'>
                 <div className='signlerq2'>
                   <h1>Request_quote_id: {e.id}</h1>
-                  <button className='green'>Edit</button>
-                  <button className='red'>Delete</button>
+                  <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
+                  <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
                 </div>
 
                 <div className='product'>
@@ -140,9 +163,6 @@ const Admin = () => {
                 Phone : {e.phone} 
                 </div>
                 </div>
-
-                
-               
              </div>
              </div>
             </>
