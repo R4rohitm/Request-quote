@@ -1,0 +1,85 @@
+.header{
+    width:100%;
+    height:100px;
+    background-color: blueviolet;
+    display: flex;
+    align-items: center;
+}
+.header1{
+    background-color: azure;
+    width:90%;
+    height:80px;
+    margin: auto;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+}
+.header1>img{
+    width:150px;
+    height:37px;
+    cursor: pointer;
+}
+.body{
+    width:100%;
+    height: fit-content;
+    background-color: blueviolet;
+}
+.body1{
+    width:90%;
+    height:100%;
+    margin: auto;
+    padding: 15px;
+    border: 1px solid black;
+    border-radius: 10px;
+    background-color: azure;
+    display: flex;
+    gap:1%;
+}
+.sidebar{
+    width:20%;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding:5px;
+}
+.data{
+    width:80%;
+    border: 1px solid black;
+    border-radius: 10px;
+}
+.singlerq{
+    width:95%;
+    margin: auto;
+    background-color: #1f2937;
+    border-radius: 10px;
+    margin-top: 5px;
+    color: azure;
+    padding: 15px;
+}
+.singlerq1{
+  padding: 10px;
+  width:95%;
+  border:1px solid azure;
+  background-color: #1f2937;
+  margin: auto;
+  border-radius: 10px;
+}
+.product{
+    padding:10px;
+    border: 1px solid azure;
+    border-radius: 10px;
+    line-height: 25px;
+}
+.product>h1{
+    font-size: 19px;
+}
+.contact>h1{
+    font-size: 19px;
+}
+.contact{
+    padding:10px;
+    border: 1px solid azure;
+    border-radius: 10px;
+    line-height: 25px;
+    margin-top: 5px;
+}
