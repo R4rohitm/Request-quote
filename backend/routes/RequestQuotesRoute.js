@@ -5,11 +5,11 @@ const RQRoute = Router();
 RQRoute.post("/newrequest", (req, res) => {
   const {
     product_details,
-    delivery_type,
+    delivery_mode,
     transportation_by,
     weight,
     volume,
-    byunits,
+    by_units,
     dimensions,
     container_type,
     containers_quantity,
@@ -24,12 +24,12 @@ RQRoute.post("/newrequest", (req, res) => {
     email,
   } = req.body;
 
-  if (byunits) {
+  if (by_units) {
     const newrq = new RQ({
       product_details,
-      delivery_type,
+      delivery_mode,
       transportation_by,
-      byunits,
+      by_units,
       dimensions,
       location_from,
       location_to,
@@ -54,7 +54,7 @@ RQRoute.post("/newrequest", (req, res) => {
   } else {
     const newrq = new RQ({
       product_details,
-      delivery_type,
+      delivery_mode,
       transportation_by,
       weight,
       volume,
@@ -71,16 +71,15 @@ RQRoute.post("/newrequest", (req, res) => {
       email,
     });
 
-    newrq.save((err, user) => {
-      if (err) {
-        return res.status(501).json({ status: "501", message: err.message });
-      } else {
-        return res.send({
+    newrq
+      .save()
+      .then(() => {
+        res.send({
           status: 200,
           message: "Request Quote created successfully",
         });
-      }
-    });
+      })
+      .catch((err) => console.log(err));
   }
 });
 
@@ -89,7 +88,7 @@ RQRoute.get("/getall/sea", async (req, res) => {
 
   if (query) {
     const allrq = await RQ.find({
-      delivery_type: "Sea",
+      delivery_mode: "Sea",
       transportation_by: query,
     });
     if (allrq) {
@@ -111,7 +110,7 @@ RQRoute.get("/getall/air", async (req, res) => {
 
   if (query) {
     const allrq = await RQ.find({
-      delivery_type: "Air",
+      delivery_mode: "Air",
       transportation_by: query,
     });
     if (allrq) {
@@ -140,7 +139,7 @@ RQRoute.get("/getall", async (req, res) => {
 RQRoute.get("/getone", async (req, res) => {
   const { email } = req.body;
 
-  const getDetailsForOne = await RQ.find({ email: email });
+  const getDetailsForOne = await RQ.findOne({ email: email });
   if (getDetailsForOne) {
     return res.status(200).send(getDetailsForOne);
   } else {
