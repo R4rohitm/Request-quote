@@ -1,12 +1,11 @@
-import logo from './logo.svg';
-import './App.css';
-import RequestQuote from './components/RequestQuote';
+import "./App.css";
+import RequestQuote2 from "./components/RequestQuote2";
 
 function App() {
   return (
-   <>
-   <RequestQuote/>
-   </>
+    <>
+      <RequestQuote2 />
+    </>
   );
 }
 
