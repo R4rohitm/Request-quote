@@ -30,7 +30,7 @@
     height:100%;
     margin: auto;
     padding: 15px;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 10px;
     background-color: azure;
     display: flex;
@@ -38,13 +38,13 @@
 }
 .sidebar{
     width:20%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 10px;
     padding:5px;
 }
 .data{
     width:80%;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     border-radius: 10px;
 }
 .singlerq{
@@ -70,10 +70,18 @@
     border-radius: 10px;
     line-height: 25px;
 }
+.product2{
+   display: grid; 
+   grid-template-columns: repeat(2,49%);
+   gap:2%;
+}
 .product>h1{
     font-size: 19px;
 }
 .contact>h1{
+    font-size: 19px;
+}
+.cargo>h1{
     font-size: 19px;
 }
 .contact{
@@ -82,4 +90,49 @@
     border-radius: 10px;
     line-height: 25px;
     margin-top: 5px;
+}
+.cargo{
+    padding:10px;
+    border: 1px solid azure;
+    border-radius: 10px;
+    line-height: 25px;
+    margin-top: 5px;  
+}
+.signlerq2{
+    padding:10px;
+    display: flex;
+    justify-content: space-between;
+}
+.signlerq2>h1{
+   font-size: 20px;
+}
+.signlerq2>button{
+    border: none;
+    padding:5px;
+    border-radius: 3px;
+}
+.green{
+    background-color: green;
+}
+.red{
+    background-color: rgb(211, 42, 42);
+}
+.dimentions{
+    display: grid;
+    grid-template-columns: repeat(2,48%);
+    gap:2%;
+}
+.dimentions>div{
+    padding: 10px;
+    border:1px solid azure;
+    text-align: center;
+    border-radius: 10px;
+}
+.searchfil{
+    margin-top: 10px;
+    height:300px;
+    background-color: #1f2937;
+    border-radius: 5px;
+    padding: 20px;
+    color: azure;
 }

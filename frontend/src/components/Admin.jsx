@@ -37,7 +37,7 @@ const Admin = () => {
          <li>
             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M5 3a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2V5a2 2 0 00-2-2H5zM5 11a2 2 0 00-2 2v2a2 2 0 002 2h2a2 2 0 002-2v-2a2 2 0 00-2-2H5zM11 5a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V5zM11 13a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-               <span class="flex-1 ml-3 whitespace-nowrap">Kanban</span>
+               <span class="flex-1 ml-3 whitespace-nowrap">Request Quote</span>
                <span class="inline-flex justify-center items-center px-2 ml-3 text-sm font-medium text-gray-800 bg-gray-200 rounded-full dark:bg-gray-700 dark:text-gray-300"></span>
             </a>
          </li>
@@ -75,13 +75,25 @@ const Admin = () => {
       </ul>
    </div>
 </aside>
+      <div className='searchfil'>
+        <form>
+         <label>Search By Email:</label><br></br><br></br>
+         <input type="text" placeholder='Email...'/>
+        </form>
+      </div>
       </div>
       <div className='data'>
        {rq && rq.map((e)=>{
         return (
             <>
-             <div className='singlerq'>
+             <div className='singlerq'> 
              <div className='singlerq1'>
+                <div className='signlerq2'>
+                  <h1>Request_quote_id: {e.id}</h1>
+                  <button className='green'>Edit</button>
+                  <button className='red'>Delete</button>
+                </div>
+
                 <div className='product'>
                 <h1>Product details : </h1>
                 Name : {e.product_details.name} <br></br>
@@ -89,17 +101,48 @@ const Admin = () => {
                 HS Code : {e.product_details.hscode} <br></br>
                 Category : {e.product_details.category} &nbsp;&nbsp;&nbsp;&nbsp; Level : {e.product_details.level}
                 </div>
+
+                <div className='product2'>
+                <div className='cargo'>
+                <h1>Cargo details : </h1>
+                delivery mode : {e.delivery_mode} <br></br>
+                Transportaion : {e.transportation_by} <br></br>
+                Container type : {e.container_type} <br></br>
+                Weight : {e.weight}mt <br></br>
+                Volume : {e.volume}m3 <br></br>
+                Location From : {e.location_from}<br></br>
+                Location To: {e.location_to}<br></br>
+                Ready to load : {e.ready_to_load}<br></br>
+                Associated services : {e.associated_services}<br></br>
+                Dimentions : {e.by_units ? 
+                <div className='dimentions'>
+                {e.dimensions.map((c)=>{
+                  return(
+                     <>
+                     <div>
+                     <p>Width : {c.width}</p>
+                     <p>Height : {c.height}</p>
+                     <p>Length : {c.length}</p>
+                     <p>Quantity : {c.quantity}</p>
+                     <p>Gross Weight : {c.gross_weight}</p>
+                     </div>
+                     </>
+                  )
+                })}
+                </div> : "N/A" }
+                </div>
+
                 <div className='contact'>
                 <h1>Contact details : </h1>
                 First_Name : {e.first_name}<br></br>
                 Last_Name : {e.last_name}<br></br>
                 Email : {e.email} <br></br>
-                Phone : {e.phone}
+                Phone : {e.phone} 
                 </div>
-               {/* <p>delivery mode : {e.delivery_mode}</p>
-               <p>Transportaion : {e.transportation_by}</p>
-               <p>Container type : {e.container_type}</p>
-               <p>Weight : {e.weight}mt &nbsp;&nbsp;&nbsp;&nbsp; Volume : {e.volume}m3</p> */}
+                </div>
+
+                
+               
              </div>
              </div>
             </>
