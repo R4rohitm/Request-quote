@@ -13,26 +13,38 @@
     border-radius: 10px;
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     padding: 15px;
 }
 
 .searchform{
-    border:1px solid blueviolet;
-    width:50%;
+    /* border:1px solid blueviolet; */
+    width:70%;
     margin: auto;
     height:50px;
-    border-radius: 5px;
-    background-color: #1f2937;
+    /* background-color: #1f2937; */
     cursor: pointer;
+    text-align: center;
 }
-input[type=text] {
-    width: 100%;
+.searchform input[type=text] {
+    width: 80%;
     border: none;
     padding: 12px 20px;
     box-sizing: border-box;
     background-color: #1f2937;
     color: azure;
+    border-radius: 5px;
+  }
+.searchform input[type=submit] {
+    margin-left: 5px;
+    width: 9%;
+    border: none;
+    padding: 12px 20px;
+    box-sizing: border-box;
+    background-color: #1f2937;
+    color: azure;
+    border-radius: 5px;
+    cursor: pointer;
   }
 .header1>img{
     width:150px;
