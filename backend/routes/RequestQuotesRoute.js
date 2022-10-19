@@ -56,6 +56,7 @@ RQRoute.post("/newrequest", (req, res) => {
       })
       
   } else {
+    
     const newrq = new RQ({
       product_details,
       delivery_mode,
@@ -87,6 +88,8 @@ RQRoute.post("/newrequest", (req, res) => {
       }
 
     });
+  }
+});
 
 RQRoute.get("/getall/sea", async (req, res) => {
   const query = req.query.transportation_by;
@@ -141,17 +144,18 @@ RQRoute.get("/getall", async (req, res) => {
   }
 });
 
-RQRoute.get("/getone", async (req, res) => {
+RQRoute.post("/getone", async (req, res) => {
+  console.log(req.body);
   const { email } = req.body;
   console.log(email);
-  // const getDetailsForOne = await RQ.findOne({ email: email });
-  // if (getDetailsForOne) {
-  //   return res.status(200).send(getDetailsForOne);
-  // } else {
-  //   return res
-  //     .status(404)
-  //     .send({ message: "Can not find details for entered email" });
-  // }
+  const getDetailsForOne = await RQ.find({ email: email });
+  if (getDetailsForOne) {
+    return res.status(200).send(getDetailsForOne);
+  } else {
+    return res
+      .status(404)
+      .send({ message: "Can not find details for entered email" });
+  }
 });
 
 module.exports = RQRoute;
