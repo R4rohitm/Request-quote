@@ -24,7 +24,7 @@ const Admin = () => {
 
       const handleSubmit = (e)=>{
          e.preventDefault();
-         axios.post(`http://localhost:8060/requestquote/getone`, formData, {
+         axios.post(`http://localhost:8060/quote/fetchByEmail`, formData, {
          headers: { "Content-Type": "application/json" },
          }).then((responce) => {
          const { data } = responce;
@@ -32,6 +32,19 @@ const Admin = () => {
        });
       };
 
+      const handle_sea_lcl = ()=>{
+        axios.get(`https://intoglo-first-api.herokuapp.com/requestquote/getall/sea?transportation_by=LCL`)
+        .then(({data})=>{
+             setRq(data);
+        });
+      }
+
+      const handle_sea_fcl = ()=>{
+         axios.get(`https://intoglo-first-api.herokuapp.com/requestquote/getall/sea?transportation_by=FCL`)
+         .then(({data})=>{
+              setRq(data);
+         });
+       }
       
       const handleacc = () =>{     
          var acc = document.getElementsByClassName("accordion");
@@ -122,8 +135,8 @@ const Admin = () => {
       <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">AIR</button>
       <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">FCL</button>
       <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">LCL</button>
-      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + LCL</button>
-      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + FCL</button>
+      <button type="button" onClick={handle_sea_lcl} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + LCL</button>
+      <button type="button" onClick={handle_sea_fcl} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + FCL</button>
       <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SC</button>
       </div>
       </div>
@@ -132,6 +145,7 @@ const Admin = () => {
       </div>
       <div className='data'>
          <div>
+            
              
          </div>
        {rq && rq.map((e)=>{
