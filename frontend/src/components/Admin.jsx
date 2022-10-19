@@ -8,7 +8,7 @@ const Admin = () => {
     const [formData, Setformdata] = useState({});
 
     useEffect(()=>{
-        axios.get(`https://intoglo-first-api.herokuapp.com/requestquote/getall`)
+        axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchall`)
         .then(({data})=>{
              setRq(data);
         });
@@ -24,7 +24,7 @@ const Admin = () => {
 
       const handleSubmit = (e)=>{
          e.preventDefault();
-         axios.post(`http://localhost:8060/quote/fetchByEmail`, formData, {
+         axios.post(`https://intoglo-first-api.herokuapp.com/quote/fetchByEmail`, formData, {
          headers: { "Content-Type": "application/json" },
          }).then((responce) => {
          const { data } = responce;
