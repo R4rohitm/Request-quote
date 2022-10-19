@@ -43,14 +43,18 @@ RQRoute.post("/newrequest", (req, res) => {
     });
 
     newrq
-      .save()
-      .then(() => {
-        res.send({
-          status: 200,
-          message: "Request Quote created successfully",
-        });
+      .save((err,req)=>{
+        if(err)
+        {
+          return res.status(404).send({status: 404 , message: err.message})
+        }
+        else
+        {
+          return res.status(200).send({status : 200 ,  message: "Request Quote created successfully",})
+        }
+
       })
-      .catch((err) => console.log(err));
+      
   } else {
     const newrq = new RQ({
       product_details,
@@ -72,16 +76,17 @@ RQRoute.post("/newrequest", (req, res) => {
     });
 
     newrq
-      .save()
-      .then(() => {
-        res.send({
-          status: 200,
-          message: "Request Quote created successfully",
-        });
-      })
-      .catch((err) => console.log(err));
-  }
-});
+    .save((err,req)=>{
+      if(err)
+      {
+        return res.status(404).send({status: 404 , message: err.message})
+      }
+      else
+      {
+        return res.status(200).send({status : 200 ,  message: "Request Quote created successfully",})
+      }
+
+    });
 
 RQRoute.get("/getall/sea", async (req, res) => {
   const query = req.query.transportation_by;
