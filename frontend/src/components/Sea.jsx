@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import { Listbox, Transition } from "@headlessui/react";
+import ByUnits from "./ByUnits";
 import {
   CheckIcon,
   ChevronUpDownIcon,
@@ -45,6 +46,21 @@ const container_type = [
   { id: 18, container_type: "N/A" },
 ];
 
+const shiptypes = [
+  { id: 1, shiptype: "Bulk Careers " },
+  { id: 2, shiptype: "Containerships " },
+  { id: 3, shiptype: "General cargo " },
+  { id: 4, shiptype: "Product tankers/Asphalt carriers " },
+  { id: 5, shiptype: "Product tankers/Chemical tankers " },
+  { id: 6, shiptype: "Product tankers/Crude carriers " },
+  { id: 7, shiptype: "Product tankers/Gas carriers " },
+  { id: 8, shiptype: "Specialized/Heavy-fit" },
+  { id: 9, shiptype: "Specialized/Livestock " },
+  { id: 10, shiptype: "Specialized/Refrigerated " },
+  { id: 11, shiptype: "Specialized/RoRo " },
+  { id: 12, shiptype: "Specialized/Wood chip " },
+];
+
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
@@ -52,10 +68,12 @@ function classNames(...classes) {
 export default function Sea() {
   const [selected, setSelected] = useState(transportation[0]);
   const [selectedContainer, setSelectedContainer] = useState(container_type[0]);
+  const [selectedShipType, setSelectedShipType] = useState(shiptypes[0]);
+  const [byUnits, setByUnits] = useState(false);
 
   return (
     <>
-      <div class="grid gap-6 mb-6 md:grid-cols-2">
+      <div class="grid gap-6 mb-8 md:grid-cols-2">
         <Listbox value={selected} onChange={setSelected}>
           {({ open }) => (
             <div class="flex flex-col">
@@ -148,188 +166,299 @@ export default function Sea() {
           )}
         </Listbox>
       </div>
-      <div class="grid gap-6 mb-8 md:grid-cols-2">
-        <Listbox value={selectedContainer} onChange={setSelectedContainer}>
-          {({ open }) => (
-            <div class="flex flex-col">
+      {selected.id === 1 ? (
+        <div class="grid gap-6 mb-8 md:grid-cols-2">
+          <Listbox value={selectedContainer} onChange={setSelectedContainer}>
+            {({ open }) => (
+              <div class="flex flex-col">
+                <label
+                  for="last_name"
+                  class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                >
+                  Container Type<span class="text-[red]">*</span>
+                </label>
+                <div className="relative mt-1">
+                  <Listbox.Button className="relative w-full cursor-default rounded-md border hover:border-[#4F46E5] border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                    <span className="flex items-center">
+                      <span className="ml-3 block truncate">
+                        {selectedContainer.container_type}
+                      </span>
+                    </span>
+                    <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                      <ChevronDownIcon
+                        className="h-5 w-5 text-gray-400"
+                        aria-hidden="true"
+                      />
+                    </span>
+                  </Listbox.Button>
+
+                  <Transition
+                    show={open}
+                    as={Fragment}
+                    leave="transition ease-in duration-100"
+                    leaveFrom="opacity-100"
+                    leaveTo="opacity-0"
+                  >
+                    <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                      {container_type.map((type) => (
+                        <Listbox.Option
+                          key={type.id}
+                          className={({ active }) =>
+                            classNames(
+                              active
+                                ? "text-white bg-indigo-600"
+                                : "text-gray-900",
+                              "relative cursor-default select-none py-2 pl-3 pr-9"
+                            )
+                          }
+                          value={type}
+                        >
+                          {({ selectedContainer, active }) => (
+                            <>
+                              <div className="flex items-center">
+                                <span
+                                  className={classNames(
+                                    selectedContainer
+                                      ? "font-semibold"
+                                      : "font-normal",
+                                    "ml-3 block truncate"
+                                  )}
+                                >
+                                  {type.container_type}
+                                </span>
+                              </div>
+
+                              {selectedContainer ? (
+                                <span
+                                  className={classNames(
+                                    active ? "text-white" : "text-indigo-600",
+                                    "absolute inset-y-0 right-0 flex items-center pr-4"
+                                  )}
+                                >
+                                  <CheckIcon
+                                    className="h-5 w-5"
+                                    aria-hidden="true"
+                                  />
+                                </span>
+                              ) : null}
+                            </>
+                          )}
+                        </Listbox.Option>
+                      ))}
+                    </Listbox.Options>
+                  </Transition>
+                </div>
+              </div>
+            )}
+          </Listbox>
+          <div>
+            <label
+              for="company"
+              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              Quantity of Containers <span class="text-[red]">*</span>
+            </label>
+            <input
+              type="number"
+              id="company"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+              placeholder="0"
+              required
+            />
+          </div>
+        </div>
+      ) : selected.id === 2 ? (
+        <div>
+          <div class="mb-5">
+            <input
+              id="bordered-checkbox-1"
+              type="checkbox"
+              value=""
+              name="bordered-checkbox"
+              onChange={() => setByUnits(!byUnits)}
+              class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
+            />
+            <label
+              for="bordered-checkbox-1"
+              class="py-4 ml-2 w-full text-sm font-medium text-gray-900 dark:text-gray-300"
+            >
+              By Units
+            </label>
+          </div>
+
+          <div>
+            {byUnits ? (
+              <ByUnits />
+            ) : (
+              <div class="grid gap-6 mb-8 md:grid-cols-2">
+                {" "}
+                <div>
+                  <label
+                    for="company"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Weight <span class="text-[red]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="company"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+                <div>
+                  <label
+                    for="company"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Volume <span class="text-[red]">*</span>
+                  </label>
+                  <input
+                    type="number"
+                    id="company"
+                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                    placeholder="0"
+                    required
+                  />
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+      ) : (
+        <>
+          <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <Listbox value={selectedShipType} onChange={setSelectedShipType}>
+              {({ open }) => (
+                <div class="flex flex-col">
+                  <label
+                    for="last_name"
+                    class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >
+                    Container Type<span class="text-[red]">*</span>
+                  </label>
+                  <div className="relative mt-1">
+                    <Listbox.Button className="relative w-full cursor-default rounded-md border hover:border-[#4F46E5] border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
+                      <span className="flex items-center">
+                        <span className="ml-3 block truncate">
+                          {selectedShipType.shiptype}
+                        </span>
+                      </span>
+                      <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
+                        <ChevronDownIcon
+                          className="h-5 w-5 text-gray-400"
+                          aria-hidden="true"
+                        />
+                      </span>
+                    </Listbox.Button>
+
+                    <Transition
+                      show={open}
+                      as={Fragment}
+                      leave="transition ease-in duration-100"
+                      leaveFrom="opacity-100"
+                      leaveTo="opacity-0"
+                    >
+                      <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+                        {shiptypes.map((type) => (
+                          <Listbox.Option
+                            key={type.id}
+                            className={({ active }) =>
+                              classNames(
+                                active
+                                  ? "text-white bg-indigo-600"
+                                  : "text-gray-900",
+                                "relative cursor-default select-none py-2 pl-3 pr-9"
+                              )
+                            }
+                            value={type}
+                          >
+                            {({ selectedShipType, active }) => (
+                              <>
+                                <div className="flex items-center">
+                                  <span
+                                    className={classNames(
+                                      selectedShipType
+                                        ? "font-semibold"
+                                        : "font-normal",
+                                      "ml-3 block truncate"
+                                    )}
+                                  >
+                                    {type.shiptype}
+                                  </span>
+                                </div>
+
+                                {selectedShipType ? (
+                                  <span
+                                    className={classNames(
+                                      active ? "text-white" : "text-indigo-600",
+                                      "absolute inset-y-0 right-0 flex items-center pr-4"
+                                    )}
+                                  >
+                                    <CheckIcon
+                                      className="h-5 w-5"
+                                      aria-hidden="true"
+                                    />
+                                  </span>
+                                ) : null}
+                              </>
+                            )}
+                          </Listbox.Option>
+                        ))}
+                      </Listbox.Options>
+                    </Transition>
+                  </div>
+                </div>
+              )}
+            </Listbox>
+            <div>
               <label
-                for="last_name"
+                for="company"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
-                Container Type<span class="text-[red]">*</span>
+                Gross Weight <span class="text-[red]">*</span>
               </label>
-              <div className="relative mt-1">
-                <Listbox.Button className="relative w-full cursor-default rounded-md border hover:border-[#4F46E5] border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
-                  <span className="flex items-center">
-                    <span className="ml-3 block truncate">
-                      {selectedContainer.container_type}
-                    </span>
-                  </span>
-                  <span className="pointer-events-none absolute inset-y-0 right-0 ml-3 flex items-center pr-2">
-                    <ChevronDownIcon
-                      className="h-5 w-5 text-gray-400"
-                      aria-hidden="true"
-                    />
-                  </span>
-                </Listbox.Button>
-
-                <Transition
-                  show={open}
-                  as={Fragment}
-                  leave="transition ease-in duration-100"
-                  leaveFrom="opacity-100"
-                  leaveTo="opacity-0"
-                >
-                  <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                    {container_type.map((type) => (
-                      <Listbox.Option
-                        key={type.id}
-                        className={({ active }) =>
-                          classNames(
-                            active
-                              ? "text-white bg-indigo-600"
-                              : "text-gray-900",
-                            "relative cursor-default select-none py-2 pl-3 pr-9"
-                          )
-                        }
-                        value={type}
-                      >
-                        {({ selectedContainer, active }) => (
-                          <>
-                            <div className="flex items-center">
-                              <span
-                                className={classNames(
-                                  selected ? "font-semibold" : "font-normal",
-                                  "ml-3 block truncate"
-                                )}
-                              >
-                                {type.container_type}
-                              </span>
-                            </div>
-
-                            {selectedContainer ? (
-                              <span
-                                className={classNames(
-                                  active ? "text-white" : "text-indigo-600",
-                                  "absolute inset-y-0 right-0 flex items-center pr-4"
-                                )}
-                              >
-                                <CheckIcon
-                                  className="h-5 w-5"
-                                  aria-hidden="true"
-                                />
-                              </span>
-                            ) : null}
-                          </>
-                        )}
-                      </Listbox.Option>
-                    ))}
-                  </Listbox.Options>
-                </Transition>
-              </div>
+              <input
+                type="number"
+                id="company"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                required
+              />
             </div>
-          )}
-        </Listbox>
-        <div>
-          <label
-            for="company"
-            class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-          >
-            Quantity of Containers <span class="text-[red]">*</span>
-          </label>
-          <input
-            type="number"
-            id="company"
-            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
-            placeholder="0"
-            required
-          />
-        </div>
-      </div>
+          </div>
+          <div class="grid gap-6 mb-8 md:grid-cols-2">
+            <div>
+              <label
+                for="company"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Loading Rate
+              </label>
+              <input
+                type="number"
+                id="company"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                required
+              />
+            </div>
+            <div>
+              <label
+                for="company"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Discharging Rate
+              </label>
+              <input
+                type="number"
+                id="company"
+                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                required
+              />
+            </div>
+          </div>
+        </>
+      )}
     </>
   );
 }
-
-/* <Menu as="div" className="relative inline-block text-left mb-5">
-  <div>
-    <label
-      for="last_name"
-      class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-    >
-      Container Type<span class="text-[red]">*</span>
-    </label>
-    <Menu.Button className="inline-flex w-full p-3 justify-between rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 shadow-sm hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 focus:ring-offset-gray-100">
-      Container Type
-      <ChevronDownIcon className="-mr-1 ml-2 h-5 w-5" aria-hidden="true" />
-    </Menu.Button>
-  </div>
-
-  <Transition
-    as={Fragment}
-    enter="transition ease-out duration-100"
-    enterFrom="transform opacity-0 scale-95"
-    enterTo="transform opacity-100 scale-100"
-    leave="transition ease-in duration-75"
-    leaveFrom="transform opacity-100 scale-100"
-    leaveTo="transform opacity-0 scale-95"
-  >
-    <Menu.Items className="absolute  z-10 mt-2 w-full origin-top-right rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-      <div className="py-1">
-        <Menu.Item>
-          {({ active }) => (
-            <a
-              href="o"
-              className={classNames(
-                active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                "block px-4 py-2 text-sm"
-              )}
-            >
-              Account settings
-            </a>
-          )}
-        </Menu.Item>
-        <Menu.Item>
-          {({ active }) => (
-            <a
-              href="i"
-              className={classNames(
-                active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                "block px-4 py-2 text-sm"
-              )}
-            >
-              Support
-            </a>
-          )}
-        </Menu.Item>
-        <Menu.Item>
-          {({ active }) => (
-            <a
-              href="r"
-              className={classNames(
-                active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                "block px-4 py-2 text-sm"
-              )}
-            >
-              License
-            </a>
-          )}
-        </Menu.Item>
-        <form method="POST" action="#">
-          <Menu.Item>
-            {({ active }) => (
-              <button
-                type="submit"
-                className={classNames(
-                  active ? "bg-gray-100 text-gray-900" : "text-gray-700",
-                  "block w-full px-4 py-2 text-left text-sm"
-                )}
-              >
-                Sign out
-              </button>
-            )}
-          </Menu.Item>
-        </form>
-      </div>
-    </Menu.Items>
-  </Transition>
-</Menu>; */

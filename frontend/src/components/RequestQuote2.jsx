@@ -43,7 +43,11 @@ const RequestQuote2 = () => {
               <button
                 type="button"
                 onClick={() => setSeaSelected(true)}
-                class="px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                className={
+                  seaSelected
+                    ? "px-4 pt-1.5 pb-1 bg-[#4F46E5] text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                    : "px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                }
               >
                 SEA
               </button>
@@ -52,16 +56,19 @@ const RequestQuote2 = () => {
               <button
                 type="button"
                 onClick={() => setSeaSelected(false)}
-                class="px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                className={
+                  !seaSelected
+                    ? "px-4 pt-1.5 pb-1 bg-[#4F46E5] text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                    : "px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                }
               >
                 AIR
               </button>
             </div>
           </div>
-          {/* SEA */}
+          {/* SEA and AIR Components*/}
           {seaSelected ? <Sea /> : <Air />}
           {/* Next Part */}
-          {/* Space for Sea and Air components */}
 
           <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>
@@ -111,7 +118,7 @@ const RequestQuote2 = () => {
               required
             />
           </div>
-          <div>
+          <div class="mb-10">
             <label
               for="website"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
