@@ -138,15 +138,15 @@ RQRoute.get("/getall", async (req, res) => {
 
 RQRoute.get("/getone", async (req, res) => {
   const { email } = req.body;
-
-  const getDetailsForOne = await RQ.findOne({ email: email });
-  if (getDetailsForOne) {
-    return res.status(200).send(getDetailsForOne);
-  } else {
-    return res
-      .status(404)
-      .send({ message: "Can not find details for entered email" });
-  }
+  console.log(email);
+  // const getDetailsForOne = await RQ.findOne({ email: email });
+  // if (getDetailsForOne) {
+  //   return res.status(200).send(getDetailsForOne);
+  // } else {
+  //   return res
+  //     .status(404)
+  //     .send({ message: "Can not find details for entered email" });
+  // }
 });
 
 module.exports = RQRoute;

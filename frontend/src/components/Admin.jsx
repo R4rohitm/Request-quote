@@ -5,6 +5,7 @@ import axios from "axios";
 
 const Admin = () => {
   const [rq, setRq] = useState([]);
+  const [formData, Setformdata] = useState({});
 
   useEffect(() => {
     axios
@@ -15,16 +16,23 @@ const Admin = () => {
   }, []);
 
   const handleChange = (e) => {
-    const formdata = {
-      email: e.target.vale,
-    };
+    let name = e.target.name;
+    Setformdata({
+      ...formData,
+      [name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    console.log(formData);
     axios
-      .get(
-        `https://intoglo-first-api.herokuapp.com/requestquote/getone`,
-        formdata
-      )
-      .then(({ data }) => {
-        setRq(data);
+      .post(`http://localhost:8060/requestquote/getone`, formData, {
+        headers: { "Content-Type": "application/json" },
+      })
+      .then((responce) => {
+        const { data } = responce;
+        console.log(data);
       });
   };
   return (
@@ -36,11 +44,17 @@ const Admin = () => {
             alt="intoglo_logo"
           />
           <div className="searchform">
-            <form>
+            <form onSubmit={handleSubmit}>
               <input
                 type="text"
-                placeholder="Email...."
+                name="email"
+                placeholder="Enter email..."
                 onChange={handleChange}
+              />
+              <input
+                type="submit"
+                class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2"
+                value="Search"
               />
             </form>
           </div>
