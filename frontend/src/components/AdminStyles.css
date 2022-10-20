@@ -35,11 +35,6 @@
   color: azure;
   border-radius: 5px;
 }
-.body{
-    width:100%;
-    min-height: 100vh;
-    background-color: blueviolet;
-}
 .searchform input[type="submit"] {
   margin-left: 5px;
   width: 9%;
@@ -58,7 +53,7 @@
 }
 .body {
   width: 100%;
-  height: fit-content;
+  min-height: 100vh;
   background-color: blueviolet;
 }
 .body1 {
@@ -232,7 +227,7 @@
 
 .panel {
   padding: 0 18px;
-  background-color: #1f2937;
+  background-color: azure;
   max-height: 0;
   overflow: hidden;
   transition: max-height 0.2s ease-out;
