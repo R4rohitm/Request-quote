@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
+import Sea from "./Sea";
+import Air from "./Air";
 
 const RequestQuote2 = () => {
+  const [seaSelected, setSeaSelected] = useState(true);
   return (
     <div class="my-12 mx-[3%] lg-mx-[15%] md:mx-[10%] sm:mx-[5%] py-6 px-8 border bg-white shadow-md">
       <div class="mb-4 text-xl font-bold md:text-3xl lg:text-4xl flex flex-wrap items-center gap-3">
@@ -35,11 +38,16 @@ const RequestQuote2 = () => {
           </div>
           {/* Delivery Type */}
           <h5 class="text-xl font-medium mb-5">Delivery Type</h5>
-          <div class="flex space-x-2 justify-start mb-20">
+          <div class="flex space-x-2 justify-start mb-10">
             <div>
               <button
                 type="button"
-                class="px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                onClick={() => setSeaSelected(true)}
+                className={
+                  seaSelected
+                    ? "px-4 pt-1.5 pb-1 bg-[#4F46E5] text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                    : "px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                }
               >
                 SEA
               </button>
@@ -47,14 +55,20 @@ const RequestQuote2 = () => {
             <div>
               <button
                 type="button"
-                class="px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                onClick={() => setSeaSelected(false)}
+                className={
+                  !seaSelected
+                    ? "px-4 pt-1.5 pb-1 bg-[#4F46E5] text-white font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                    : "px-4 pt-1.5 pb-1 bg-white text-black font-medium text-xs leading-normal uppercase rounded shadow-md hover:bg-[#4F46E5] hover:text-white hover:shadow-lg focus:bg-[#4F46E5] focus:text-white focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out flex align-center"
+                }
               >
                 AIR
               </button>
             </div>
           </div>
+          {/* SEA and AIR Components*/}
+          {seaSelected ? <Sea /> : <Air />}
           {/* Next Part */}
-          {/* Space for Sea and Air components */}
 
           <div class="grid gap-6 mb-6 md:grid-cols-2">
             <div>
@@ -104,7 +118,7 @@ const RequestQuote2 = () => {
               required
             />
           </div>
-          <div>
+          <div class="mb-10">
             <label
               for="website"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
