@@ -26,25 +26,50 @@ const Admin = () => {
          e.preventDefault();
          axios.post(`https://intoglo-first-api.herokuapp.com/quote/fetchByEmail`, formData, {
          headers: { "Content-Type": "application/json" },
-         }).then((responce) => {
-         const { data } = responce;
-         setRq(data);
-       });
+         }).then((responce)=>{
+            const {data} = responce;
+            setRq(data);
+         })
       };
 
-      const handle_sea_lcl = ()=>{
-        axios.get(`https://intoglo-first-api.herokuapp.com/requestquote/getall/sea?transportation_by=LCL`)
+      const handle_sea = ()=>{
+        axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/sea`)
         .then(({data})=>{
              setRq(data);
         });
       }
 
-      const handle_sea_fcl = ()=>{
-         axios.get(`https://intoglo-first-api.herokuapp.com/requestquote/getall/sea?transportation_by=FCL`)
+      const handle_all = ()=>{
+         window.location.reload();
+      }
+
+      const handle_air = ()=>{
+         axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/air`)
          .then(({data})=>{
               setRq(data);
          });
        }
+
+      const handle_sea_lcl = ()=>{
+         axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/sea?transportation_by=LCL`)
+         .then(({data})=>{
+              setRq(data);
+         });
+       }
+
+      const handle_sea_fcl = ()=>{
+         axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/sea?transportation_by=FCL`)
+         .then(({data})=>{
+              setRq(data);
+         });
+       }
+
+      const handle_air_sc = ()=>{
+         axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/air?transportation_by=SC`)
+         .then(({data})=>{
+              setRq(data);
+         });
+      }
       
       const handleacc = () =>{     
          var acc = document.getElementsByClassName("accordion");
@@ -70,7 +95,7 @@ const Admin = () => {
        <img src="https://ik.imagekit.io/qtf62wap9/es/static/u/intoglo.com/images/logo/original/intoglo_logo.png?tr=w-150" alt="intoglo_logo" />
        <div className='searchform'>
        <form onSubmit={handleSubmit}>
-       <input type="text" name="email" placeholder='Enter email...' onChange={handleChange}/>
+       <input type="text" name="email" placeholder='Search...' onChange={handleChange}/>
        <input type="submit" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2" value="Search"/>
        </form>
        </div> 
@@ -99,11 +124,11 @@ const Admin = () => {
          <li>
             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path d="M8.707 7.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l2-2a1 1 0 00-1.414-1.414L11 7.586V3a1 1 0 10-2 0v4.586l-.293-.293z"></path><path d="M3 5a2 2 0 012-2h1a1 1 0 010 2H5v7h2l1 2h4l1-2h2V5h-1a1 1 0 110-2h1a2 2 0 012 2v10a2 2 0 01-2 2H5a2 2 0 01-2-2V5z"></path></svg>
-               <span class="flex-1 ml-3 whitespace-nowrap">Total quotes</span>
+               <span class="flex-1 ml-3 whitespace-nowrap">Total Quotes</span>
                <span class="inline-flex justify-center items-center p-3 ml-3 w-3 h-3 text-sm font-medium text-blue-600 bg-blue-200 rounded-full dark:bg-blue-900 dark:text-blue-200">{rq.length}</span>
             </a>
          </li>
-         <li>
+         {/* <li>
             <a href="#" class="flex items-center p-2 text-base font-normal text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700">
                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10 9a3 3 0 100-6 3 3 0 000 6zm-7 9a7 7 0 1114 0H3z" clip-rule="evenodd"></path></svg>
                <span class="flex-1 ml-3 whitespace-nowrap">Users</span>
@@ -126,18 +151,18 @@ const Admin = () => {
                <svg aria-hidden="true" class="flex-shrink-0 w-6 h-6 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 dark:group-hover:text-white" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M5 4a3 3 0 00-3 3v6a3 3 0 003 3h10a3 3 0 003-3V7a3 3 0 00-3-3H5zm-1 9v-1h5v2H5a1 1 0 01-1-1zm7 1h4a1 1 0 001-1v-1h-5v2zm0-4h5V8h-5v2zM9 8H4v2h5V8z" clip-rule="evenodd"></path></svg>
                <span class="flex-1 ml-3 whitespace-nowrap">Sign Up</span>
             </a>
-         </li>
+         </li> */}
       </ul>
    </div>
 </aside>
       <div className='searchfil'>
-      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA</button>
-      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">AIR</button>
-      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">FCL</button>
+      <button type="button" onClick={handle_sea} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA</button>
+      <button type="button" onClick={handle_air} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">AIR</button>
+      <button type="button" onClick={handle_all}class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ALL</button>
       <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">LCL</button>
       <button type="button" onClick={handle_sea_lcl} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + LCL</button>
       <button type="button" onClick={handle_sea_fcl} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + FCL</button>
-      <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SC</button>
+      <button type="button" onClick={handle_air_sc} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SC</button>
       </div>
       </div>
       <div>
@@ -153,67 +178,113 @@ const Admin = () => {
             <>
             <button onClick={handleacc} class="accordion">Request Quote : {e.id}</button>
             <div class="panel">
-            <div className='singlerq'> 
-             <div className='singlerq1'>
-                <div className='signlerq2'>
-                  <h1>Request_quote_id: {e.id}</h1>
-                  <button type="button" class="focus:outline-none text-white bg-green-700 hover:bg-green-800 focus:ring-4 focus:ring-green-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-green-600 dark:hover:bg-green-700 dark:focus:ring-green-800">Edit</button>
-                  <button type="button" class="focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Delete</button>
-                </div>
-                <div className='product'>
-                <h1>Product details : </h1>
-                Name : {e.product_details.name} <br></br>
-                Discription : {e.product_details.discription} <br></br>
-                HS Code : {e.product_details.hscode} <br></br>
-                Category : {e.product_details.category} &nbsp;&nbsp;&nbsp;&nbsp; Level : {e.product_details.level}
-                </div>
-
-                <div className='product2'>
-                <div className='cargo'>
-                <h1>Cargo details : </h1>
-                delivery mode : {e.delivery_mode} <br></br>
-                Transportaion : {e.transportation_by} <br></br>
-                Container type : {e.container_type} <br></br>
-                Weight : {e.weight}mt <br></br>
-                Volume : {e.volume}m3 <br></br>
-                Location From : {e.location_from}<br></br>
-                Location To: {e.location_to}<br></br>
-                Ready to load : {e.ready_to_load}<br></br>
-                Associated services : {e.associated_services}<br></br>
-                Dimentions : {e.by_units ? 
-                <div className='dimentions'>
-                {e.dimensions.map((c)=>{
+            <table id="customers">
+  <tr>
+    <td>Request Quote Id </td>
+    <td>{e.id}</td>
+  </tr>
+  <tr>
+    <td>Product Name </td>
+    <td>{e.product_details.name}</td>
+  </tr>
+  <tr>
+    <td>Product Details</td>
+    <td>{e.product_details.discription}</td>
+  </tr>
+  <tr>
+    <td>HS Code</td>
+    <td>{e.product_details.hscode}</td>
+  </tr>
+  <tr>
+    <td>Category</td>
+    <td>{e.product_details.category}</td>
+  </tr>
+  <tr>
+    <td>Level</td>
+    <td>{e.product_details.level}</td>
+  </tr>
+  <tr>
+    <td>Delivery Mode</td>
+    <td>{e.delivery_mode}</td>
+  </tr>
+  <tr>
+    <td>Transportation By</td>
+    <td>{e.transportation_by}</td>
+  </tr>
+  <tr>
+    <td>Container Type</td>
+    <td>{e.container_type}</td>
+  </tr>
+  <tr>
+    <td>Weight</td>
+    <td>{e.weight}mt</td>
+  </tr>
+  <tr>
+    <td>Volume</td>
+    <td>{e.volume}m3</td>
+  </tr>
+  <tr>
+    <td>Location From</td>
+    <td>{e.location_from}</td>
+  </tr>
+  <tr>
+    <td>Location To</td>
+    <td>{e.location_to}</td>
+  </tr>
+  <tr>
+    <td>Ready to load</td>
+    <td>{e.ready_to_load}</td>
+  </tr>
+  <tr>
+    <td>Associated services</td>
+    <td>{e.associated_services}</td>
+  </tr>
+  {e.by_units ? <>
+   {e.dimensions.map((c)=>{
                   return(
                      <>
-                     <div>
-                     <p>Width : {c.width}</p>
-                     <p>Height : {c.height}</p>
-                     <p>Length : {c.length}</p>
-                     <p>Quantity : {c.quantity}</p>
-                     <p>Gross Weight : {c.gross_weight}</p>
-                     </div>
+                     <tr>
+                     <td>Dimensions</td>
+                     <td>Width : {c.width} &nbsp;&nbsp;&nbsp; Height : {c.height} &nbsp;&nbsp;&nbsp; Length : {c.length} &nbsp;&nbsp;&nbsp; Quantity : {c.quantity} &nbsp;&nbsp;&nbsp; Gross Weight : {c.gross_weight}</td>
+                     </tr>
                      </>
                   )
                 })}
-                </div> : "N/A" }
-                </div>
-
-                <div className='contact'>
-                <h1>Contact details : </h1>
-                First_Name : {e.first_name}<br></br>
-                Last_Name : {e.last_name}<br></br>
-                Email : {e.email} <br></br>
-                Phone : {e.phone} 
-                </div>
-                </div>
-             </div>
-             </div>
+  </>:<>
+  <tr>
+    <td>Demensions</td>
+    <td>N/A</td>
+  </tr>
+  </>}
+  <tr>
+    <td>First_Name </td>
+    <td>{e.first_name}</td>
+  </tr>
+  <tr>
+    <td>Last_Name </td>
+    <td>{e.last_name}</td>
+  </tr>
+  <tr>
+    <td>Email</td>
+    <td>{e.email}</td>
+  </tr>
+  <tr>
+    <td>Phone</td>
+    <td>{e.phone}</td>
+  </tr>
+</table>
             </div>
             </>
         )
        })}
+      {/* <div className='users'>
+
+      </div> */}
       </div>
      </div>
+     {/* <div className='users'>
+
+     </div> */}
     </div>
     </>
   )
