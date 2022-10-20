@@ -11,16 +11,19 @@ const transportation = [
   {
     id: 1,
     transportation_by: "Full Container Load (FCL)",
+    abbreviation: "FCL",
     icon: "https://cdn-icons-png.flaticon.com/512/5340/5340887.png",
   },
   {
     id: 2,
     transportation_by: "Less than Container Load (LCL)",
+    abbreviation: "LCL",
     icon: "https://cdn-icons-png.flaticon.com/512/3045/3045754.png",
   },
   {
     id: 3,
     transportation_by: "Bulk",
+    abbreviation: "Bulk",
     icon: "https://cdn-icons-png.flaticon.com/512/2821/2821826.png",
   },
 ];
@@ -65,7 +68,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Sea() {
+export default function Sea({ setFormData, formData, handleChange }) {
   const [selected, setSelected] = useState(transportation[0]);
   const [selectedContainer, setSelectedContainer] = useState(container_type[0]);
   const [selectedShipType, setSelectedShipType] = useState(shiptypes[0]);
@@ -74,7 +77,18 @@ export default function Sea() {
   return (
     <>
       <div class="grid gap-6 mb-8 md:grid-cols-2">
-        <Listbox value={selected} onChange={setSelected}>
+        <Listbox
+          id="transportation_by"
+          value={selected}
+          onChange={(e) => {
+            console.log(e);
+            setSelected(e);
+            setFormData({
+              ...formData,
+              transportation_by: e.abbreviation,
+            });
+          }}
+        >
           {({ open }) => (
             <div class="flex flex-col">
               <label
@@ -168,7 +182,16 @@ export default function Sea() {
       </div>
       {selected.id === 1 ? (
         <div class="grid gap-6 mb-8 md:grid-cols-2">
-          <Listbox value={selectedContainer} onChange={setSelectedContainer}>
+          <Listbox
+            value={selectedContainer}
+            onChange={(e) => {
+              setSelectedContainer(e);
+              setFormData({
+                ...formData,
+                container_type: e.container_type,
+              });
+            }}
+          >
             {({ open }) => (
               <div class="flex flex-col">
                 <label
@@ -253,14 +276,15 @@ export default function Sea() {
           </Listbox>
           <div>
             <label
-              for="company"
+              for="Quanity of Containers"
               class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
             >
               Quantity of Containers <span class="text-[red]">*</span>
             </label>
             <input
               type="number"
-              id="company"
+              name="containers_quantity"
+              onChange={(e) => handleChange(e)}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               placeholder="0"
               required
@@ -275,7 +299,10 @@ export default function Sea() {
               type="checkbox"
               value=""
               name="bordered-checkbox"
-              onChange={() => setByUnits(!byUnits)}
+              onChange={() => {
+                setByUnits(!byUnits);
+                setFormData({ ...formData, by_units: !byUnits });
+              }}
               class="w-4 h-4 text-blue-600 bg-gray-100 rounded border-gray-300 focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600"
             />
             <label
@@ -288,20 +315,21 @@ export default function Sea() {
 
           <div>
             {byUnits ? (
-              <ByUnits />
+              <ByUnits formData={formData} setFormData={setFormData} />
             ) : (
               <div class="grid gap-6 mb-8 md:grid-cols-2">
                 {" "}
                 <div>
                   <label
-                    for="company"
+                    for="weight"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Weight <span class="text-[red]">*</span>
                   </label>
                   <input
                     type="number"
-                    id="company"
+                    name="weight"
+                    onChange={(e) => handleChange(e)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                     placeholder="0"
                     required
@@ -309,14 +337,15 @@ export default function Sea() {
                 </div>
                 <div>
                   <label
-                    for="company"
+                    for="volume"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
                     Volume <span class="text-[red]">*</span>
                   </label>
                   <input
                     type="number"
-                    id="company"
+                    name="volume"
+                    onChange={(e) => handleChange(e)}
                     class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                     placeholder="0"
                     required

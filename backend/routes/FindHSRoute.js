@@ -2,20 +2,17 @@ const HS = require("../models/HSCodesSchema");
 const Router = require("express");
 const HSRoute = Router();
 
-
 HSRoute.get("/findhs", async (req, res) => {
-
-    const { name } = req.query;
+  const { name } = req.query;
+  if (name.length >= 1) {
     const pr = await HS.find({ $text: { $search: name } });
-  
+
     if (pr <= 0) {
       res.status(401).send("No Result");
-    }
-     else {
+    } else {
       res.send(pr);
     }
-  });
+  }
+});
 
-
-
-module.exports=HSRoute;
+module.exports = HSRoute;
