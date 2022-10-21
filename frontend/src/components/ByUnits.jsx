@@ -30,7 +30,7 @@ const ByUnits = ({ setFormData, formData }) => {
               >
                 Dimensions
               </label>
-              <div class="border flex space-between items-center focus:outline-[#4F46E5] hover:border-[#4F46E5] bg-white">
+              <div class="border flex space-between items-center rounded-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] bg-white">
                 <input
                   type="text"
                   name="width"
@@ -65,8 +65,8 @@ const ByUnits = ({ setFormData, formData }) => {
                 </div>
               </div>
             </div>
-            <div class="grid gap-6 grid-cols-3 sm:grid-cols-3 items-center">
-              <div>
+            <div class="grid relative gap-6 grid-cols-5 sm:grid-cols-5 lg:grid-cols-7 items-center">
+              <div class="col-span-2 lg:col-span-3">
                 <label
                   for="company"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -83,7 +83,7 @@ const ByUnits = ({ setFormData, formData }) => {
                   placeholder="Quantity"
                 />
               </div>
-              <div>
+              <div class="col-span-2 lg:col-span-3">
                 <label
                   for="company"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
@@ -121,7 +121,7 @@ const ByUnits = ({ setFormData, formData }) => {
                 <button
                   type="button"
                   onClick={() => handleRemoveComponent(index)}
-                  class="text-[#4F46E5]  flex justify-center items-center bg-white hover:bg-[#4F46E5] hover:text-white focus:ring-4 focus:outline-none font-medium text-sm rounded-lg w-6 h-6 sm:w-6 sm:h-6  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  class="text-[#4F46E5] absolute right-0 col-span-1  flex justify-center items-center bg-white hover:bg-[#4F46E5] hover:text-white focus:ring-4 focus:outline-none font-medium text-sm rounded-lg w-6 h-6 sm:w-6 sm:h-6  text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
