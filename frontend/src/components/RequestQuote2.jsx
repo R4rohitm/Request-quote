@@ -1,6 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
+import BeatLoader from "react-spinners/BeatLoader";
 import Sea from "./Sea";
 import Air from "./Air";
+// import Data from "../utils/locations.json";
 
 const RequestQuote2 = () => {
   const [seaSelected, setSeaSelected] = useState(true);
@@ -13,8 +15,11 @@ const RequestQuote2 = () => {
   const inputProduct = useRef("");
   const inputCity1 = useRef("");
   const inputCity2 = useRef("");
+  const [isLoading, setIsLoading] = useState(false);
   //
-  const [formData, setFormData] = useState({ delivery_mode: "Sea" });
+  const [formData, setFormData] = useState({
+    delivery_mode: "Sea",
+  });
   console.log(formData);
 
   const handleChange = (e) => {
@@ -25,9 +30,25 @@ const RequestQuote2 = () => {
     });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.log(formData);
+    setIsLoading(true);
+    try {
+      let response = await fetch(`http://localhost:8060/quote/create`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      let data = await response.json();
+      console.log(data);
+      if (data.status === 200) {
+        setIsLoading(false);
+      }
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const handleClickProductName = (name, description) => {
@@ -74,19 +95,24 @@ const RequestQuote2 = () => {
     console.log(cityQuery1);
     try {
       let response = await fetch(
-        `https://intoglo-first-api.herokuapp.com/search/FindCity?search=${cityQuery1}`
+        `https://api.api-ninjas.com/v1/city?name=${cityQuery1}`,
+        { headers: { "X-Api-Key": "UczdRN7ix8nBYXWfPO030g==raOcRa79svjw6Ht2" } }
       );
       let data = await response.json();
+      console.log(data);
       setCities1(data);
     } catch (e) {
       console.log(e);
     }
   };
 
+  // UczdRN7ix8nBYXWfPO030g==raOcRa79svjw6Ht2
+
   const getLocation2 = async (cityQuery2) => {
     try {
       let response = await fetch(
-        `https://intoglo-first-api.herokuapp.com/search/FindCity?search=${cityQuery2}`
+        `https://api.api-ninjas.com/v1/city?name=${cityQuery2}`,
+        { headers: { "X-Api-Key": "UczdRN7ix8nBYXWfPO030g==raOcRa79svjw6Ht2" } }
       );
       let data = await response.json();
       setCities2(data);
@@ -163,7 +189,7 @@ const RequestQuote2 = () => {
                 <input
                   type="text"
                   id="product_details"
-                  class="text-md text-gray-900  block w-full p-2.5 focus:outline-none"
+                  class="text-md text-gray-900  block w-full p-2.5 focus:outline-none "
                   placeholder="Enter commodity type or HS code"
                   required
                   onChange={(e) => setHsQuery(e.target.value)}
@@ -198,7 +224,7 @@ const RequestQuote2 = () => {
             </div>
           </div>
           {/* Delivery Type */}
-          <h5 class="text-xl font-medium mb-5">Delivery Type</h5>
+          <h5 class="text-xl font-medium mb-5">Delivery Mode</h5>
           <div class="flex space-x-2 justify-start mb-10">
             <div>
               <button
@@ -261,7 +287,9 @@ const RequestQuote2 = () => {
                 <input
                   type="text"
                   id="location_from"
-                  onChange={(e) => setCityQuery1(e.target.value)}
+                  onChange={(e) => {
+                    setCityQuery1(e.target.value);
+                  }}
                   class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                   placeholder="City, Port"
                   required
@@ -338,7 +366,8 @@ const RequestQuote2 = () => {
             </label>
             <input
               type="date"
-              id="phone"
+              name="ready_to_load"
+              onChange={(e) => handleChange(e)}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               placeholder="Select"
               required
@@ -357,7 +386,6 @@ const RequestQuote2 = () => {
               onChange={(e) => handleChange(e)}
               class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               placeholder="Write a message..."
-              required
             />
           </div>
           <h5 class="text-xl font-medium mb-5">Contact Details</h5>
@@ -406,7 +434,7 @@ const RequestQuote2 = () => {
               </label>
               <input
                 type="number"
-                home="phone"
+                name="phone"
                 onChange={(e) => handleChange(e)}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 placeholder="123-456-7890"
@@ -458,7 +486,11 @@ const RequestQuote2 = () => {
             type="submit"
             class="text-white bg-[#4F46E5] hover:bg-[#4F46E5] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
           >
-            Submit
+            {isLoading ? (
+              <BeatLoader color="#4F46E5" class="bg-white" />
+            ) : (
+              "Submit"
+            )}
           </button>
         </div>
       </form>

@@ -3,10 +3,7 @@ import React, { useState } from "react";
 const ByUnits = ({ setFormData, formData }) => {
   const [dimensions, setDimensions] = useState();
   return (
-    <form
-      onSubmit={(e) => setFormData({ ...formData, dimensions: [dimensions] })}
-      class="grid gap-6 mb-6 md:grid-cols-2"
-    >
+    <div class="grid gap-6 mb-6 md:grid-cols-2">
       <div>
         <label
           for="last_name"
@@ -91,12 +88,14 @@ const ByUnits = ({ setFormData, formData }) => {
         </div>
       </div>
       <button
-        type="submit"
+        onClick={() => {
+          setFormData({ ...formData, dimensions: dimensions });
+        }}
         class="text-white bg-[#4F46E5] hover:bg-[#4F46E5] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-16 rounded-lg sm:w-16 px-2 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
       >
         Add
       </button>
-    </form>
+    </div>
   );
 };
 

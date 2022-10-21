@@ -50,18 +50,19 @@ const container_type = [
 ];
 
 const shiptypes = [
-  { id: 1, shiptype: "Bulk Careers " },
-  { id: 2, shiptype: "Containerships " },
-  { id: 3, shiptype: "General cargo " },
-  { id: 4, shiptype: "Product tankers/Asphalt carriers " },
-  { id: 5, shiptype: "Product tankers/Chemical tankers " },
-  { id: 6, shiptype: "Product tankers/Crude carriers " },
-  { id: 7, shiptype: "Product tankers/Gas carriers " },
-  { id: 8, shiptype: "Specialized/Heavy-fit" },
-  { id: 9, shiptype: "Specialized/Livestock " },
-  { id: 10, shiptype: "Specialized/Refrigerated " },
-  { id: 11, shiptype: "Specialized/RoRo " },
-  { id: 12, shiptype: "Specialized/Wood chip " },
+  { id: 1, shiptype: "Bulk Careers" },
+  { id: 2, shiptype: "Containerships" },
+  { id: 3, shiptype: "General cargo" },
+  { id: 4, shiptype: "Product tankers/Asphalt carriers" },
+  { id: 5, shiptype: "Product tankers/Chemical tankers" },
+  { id: 6, shiptype: "Product tankers/Crude carriers" },
+  { id: 7, shiptype: "Product tankers/Gas carriers" },
+  { id: 8, shiptype: "Specialized/Heavy-lift" },
+  { id: 9, shiptype: "Specialized/Livestock" },
+  { id: 10, shiptype: "Specialized/Refrigerated" },
+  { id: 11, shiptype: "Specialized/RoRo" },
+  { id: 12, shiptype: "Specialized/Wood chip" },
+  { id: 13, shiptype: "N/A" },
 ];
 
 function classNames(...classes) {
@@ -358,14 +359,23 @@ export default function Sea({ setFormData, formData, handleChange }) {
       ) : (
         <>
           <div class="grid gap-6 mb-8 md:grid-cols-2">
-            <Listbox value={selectedShipType} onChange={setSelectedShipType}>
+            <Listbox
+              value={selectedShipType}
+              onChange={(e) => {
+                setSelectedShipType(e);
+                setFormData({
+                  ...formData,
+                  ship_type: e.shiptype,
+                });
+              }}
+            >
               {({ open }) => (
                 <div class="flex flex-col">
                   <label
                     for="last_name"
                     class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                   >
-                    Container Type<span class="text-[red]">*</span>
+                    Ship Type
                   </label>
                   <div className="relative mt-1">
                     <Listbox.Button className="relative w-full cursor-default rounded-md border hover:border-[#4F46E5] border-gray-300 bg-white py-2 pl-3 pr-10 text-left shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-indigo-500 sm:text-sm">
@@ -443,14 +453,15 @@ export default function Sea({ setFormData, formData, handleChange }) {
             </Listbox>
             <div>
               <label
-                for="company"
+                for="Gross Weight"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Gross Weight <span class="text-[red]">*</span>
               </label>
               <input
                 type="number"
-                id="company"
+                name="gross_weight"
+                onChange={(e) => handleChange(e)}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 required
               />
@@ -459,30 +470,30 @@ export default function Sea({ setFormData, formData, handleChange }) {
           <div class="grid gap-6 mb-8 md:grid-cols-2">
             <div>
               <label
-                for="company"
+                for="Gross Weight"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Loading Rate
               </label>
               <input
                 type="number"
-                id="company"
+                name="loading_rate"
+                onChange={(e) => handleChange(e)}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
-                required
               />
             </div>
             <div>
               <label
-                for="company"
+                for="Discharging Rate"
                 class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
               >
                 Discharging Rate
               </label>
               <input
                 type="number"
-                id="company"
+                name="discharging_rate"
+                onChange={(e) => handleChange(e)}
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
-                required
               />
             </div>
           </div>
