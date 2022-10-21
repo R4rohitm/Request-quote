@@ -16,7 +16,7 @@ app.use(
 );
 app.use("/quote", RequestQoutesRoute);
 app.use("/search", FindHSRoute);
-app.use("/city",CityRoute);
+app.use("/city", CityRoute);
 //testing
 app.get("/", (req, res) => {
   res.send("Request Quote backend working....");
