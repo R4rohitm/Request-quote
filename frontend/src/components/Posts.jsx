@@ -43,7 +43,7 @@ const Posts = ({ posts }) => {
                               <div>{e.transportation_by}</div>
                               <div>{e.location_from}</div>
                               <div>{e.location_to}</div>
-                              <div>{e.first_name}{e.last_name}</div>
+                              <div>{e.first_name}&nbsp;{e.last_name}</div>
                               <div>{e.email}</div>
                               <div>{e.phone}</div>
                               </div>
