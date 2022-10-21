@@ -48,7 +48,9 @@ const Admin = () => {
         axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/sea`)
         .then(({data})=>{
              setRq(data);
-        });
+        }).catch((error) => {
+         if(error.response) setRq([]);
+      });
       }
 
       const handle_all = ()=>{
@@ -59,45 +61,46 @@ const Admin = () => {
          axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/air`)
          .then(({data})=>{
               setRq(data);
-         });
+         }).catch((error) => {
+            if(error.response) setRq([]);
+        });
        }
 
       const handle_sea_lcl = ()=>{
          axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/sea?transportation_by=LCL`)
          .then(({data})=>{
               setRq(data);
-         });
+         }).catch((error) => {
+            if(error.response) setRq([]);
+        });
        }
-
+      
+      const handle_lcl = ()=>{
+         axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchbymode/LCL`)
+         .then(({data})=>{
+              setRq(data);
+         }).catch((error) => {
+            if(error.response) setRq([]);
+        });
+      }
       const handle_sea_fcl = ()=>{
          axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/sea?transportation_by=FCL`)
          .then(({data})=>{
               setRq(data);
-         });
+         }).catch((error) => {
+            if(error.response) setRq([]);
+        });
        }
 
       const handle_air_sc = ()=>{
          axios.get(`https://intoglo-first-api.herokuapp.com/quote/fetchByMode/air?transportation_by=SC`)
          .then(({data})=>{
               setRq(data);
-         });
+         }).catch((error) => {
+            if(error.response) setRq([]);
+        });
       }
       
-      // const handleacc = () =>{     
-      //    var acc = document.getElementsByClassName("accordion");
-      //    var i;
-      //    for (i = 0; i < acc.length; i++) {
-      //      acc[i].addEventListener("click", function() {
-      //        this.classList.toggle("active");
-      //        var panel = this.nextElementSibling;
-      //        if (panel.style.maxHeight) {
-      //          panel.style.maxHeight = null;
-      //        } else {
-      //          panel.style.maxHeight = panel.scrollHeight + "px";
-      //        } 
-      //      });
-      //    }
-      //    }
          return (
           
                       <>
@@ -170,7 +173,7 @@ const Admin = () => {
                         <button type="button" onClick={handle_sea} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA</button>
                         <button type="button" onClick={handle_air} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">AIR</button>
                         <button type="button" onClick={handle_all}class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">ALL</button>
-                        <button type="button" class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">LCL</button>
+                        <button type="button" onClick={handle_lcl}class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">LCL</button>
                         <button type="button" onClick={handle_sea_lcl} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + LCL</button>
                         <button type="button" onClick={handle_sea_fcl} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SEA + FCL</button>
                         <button type="button" onClick={handle_air_sc} class="text-white bg-gradient-to-r from-purple-500 via-purple-600 to-purple-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-purple-300 dark:focus:ring-purple-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center mr-2 mb-2">SC</button>
@@ -181,6 +184,16 @@ const Admin = () => {
                         </div>
                         <div className='body2'>
                         <div className='data'>
+                        <div className='theadmain'>
+                         <div>Quote Id</div>
+                         <div>Delivery Mode</div>
+                         <div>Transportation By</div>
+                         <div>Location From</div>
+                         <div>Location To</div>
+                         <div>Name</div>
+                         <div>Email</div>
+                         <div>Phone Number</div>
+                        </div>
                         {rq.length!=0 ? <Posts posts={currentPosts} /> : <button class="accordion">No Results !</button>}
                         </div>
                         <div className='pagination'> 
