@@ -20,6 +20,7 @@ const RequestQuote2 = () => {
   //
   const [formData, setFormData] = useState({
     delivery_mode: "Sea",
+    dimensions: [],
   });
   console.log(formData);
 
