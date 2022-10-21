@@ -32,7 +32,8 @@ const Posts = ({ posts }) => {
   return (
     <>
      {posts && posts.map((e)=>{
-      console.log(e.dimensions);
+      
+        console.log(e)
                           return (
                               <>
                               <button onClick={handleacc} class="accordion">
@@ -58,7 +59,7 @@ const Posts = ({ posts }) => {
                                  <td>{e.product_details.name}</td>
                                  </tr>
                                  <tr>
-                                 <td>Product Details</td>
+                                 <td>Product Discription</td>
                                  <td>{e.product_details.discription}</td>
                                  </tr>
                                  <tr>
@@ -105,15 +106,15 @@ const Posts = ({ posts }) => {
                                  <td>Ready to load</td>
                                  <td>{e.ready_to_load}</td>
                                  </tr>
-                                 <tr>
+                                 {/* <tr>
                                  <td>Associated services</td>
                                  <td>{e.associated_services}</td>
-                                 </tr>
+                                 </tr> */}
                                 {e.by_units ? <>
                                        <>
                                        <tr>
                                        <td>Dimensions</td>
-                                       {/* <td>Width : {e.dimensions.width} &nbsp;&nbsp;&nbsp; Height : {e.dimentions.height} &nbsp;&nbsp;&nbsp; Length : {e.dimentions.length} &nbsp;&nbsp;&nbsp; Quantity : {e.dimentions.quantity} &nbsp;&nbsp;&nbsp; Gross Weight : {e.dimentions.gross_weight}</td> */}
+                                       <td>Width : {e.dimensions.width} &nbsp;&nbsp;&nbsp; Height : {e.dimensions.height} &nbsp;&nbsp;&nbsp; Length : {e.dimensions.length} &nbsp;&nbsp;&nbsp; Quantity : {e.dimensions.quantity} &nbsp;&nbsp;&nbsp; Gross Weight : {e.dimensions.gross_weight}</td>
                                        </tr>
                                        </>
                                 </>:<>

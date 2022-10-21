@@ -194,7 +194,7 @@ const Admin = () => {
                          <div>Email</div>
                          <div>Phone Number</div>
                         </div>
-                        {rq.length!=0 ? <Posts posts={currentPosts} /> : <button class="accordion">No Results !</button>}
+                        {rq.length!=0 ? <Posts posts={currentPosts} /> : <button class="accordion_nores">No Results !</button>}
                         </div>
                         <div className='pagination'> 
                         <Pagination postsPerPage={postsPerPage} totalPosts={rq.length} paginate={paginate}/>
