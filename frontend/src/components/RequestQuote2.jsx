@@ -1,8 +1,9 @@
 import React, { useEffect, useState, useRef } from "react";
-import BeatLoader from "react-spinners/BeatLoader";
+import HashLoader from "react-spinners/BeatLoader";
 import Sea from "./Sea";
 import Air from "./Air";
-// import Data from "../utils/locations.json";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const RequestQuote2 = () => {
   const [seaSelected, setSeaSelected] = useState(true);
@@ -35,16 +36,20 @@ const RequestQuote2 = () => {
     console.log(formData);
     setIsLoading(true);
     try {
-      let response = await fetch(`https://intoglo-first-api.herokuapp.com/quote/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      let response = await fetch(
+        `https://intoglo-first-api.herokuapp.com/quote/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       let data = await response.json();
       console.log(data);
       if (data.status === 200) {
         setIsLoading(false);
+        toast("Form Submitted Successfully");
       }
     } catch (e) {
       console.log(e);
@@ -224,7 +229,7 @@ const RequestQuote2 = () => {
             </div>
           </div>
           {/* Delivery Type */}
-          <h5 class="text-xl font-medium mb-5">Delivery Mode</h5>
+          <h5 class="text-xl font-medium mb-5">Delivery</h5>
           <div class="flex space-x-2 justify-start mb-10">
             <div>
               <button
@@ -282,7 +287,7 @@ const RequestQuote2 = () => {
                   for="last_name"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Location From <span class="text-[red]">*</span>
+                  From <span class="text-[red]">*</span>
                 </label>
                 <input
                   type="text"
@@ -290,7 +295,7 @@ const RequestQuote2 = () => {
                   onChange={(e) => {
                     setCityQuery1(e.target.value);
                   }}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                  class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                   placeholder="City, Port"
                   required
                 />
@@ -323,13 +328,13 @@ const RequestQuote2 = () => {
                   for="last_name"
                   class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
                 >
-                  Location To <span class="text-[red]">*</span>
+                  To <span class="text-[red]">*</span>
                 </label>
                 <input
                   type="text"
                   id="location_to"
                   onChange={(e) => setCityQuery2(e.target.value)}
-                  class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                  class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                   placeholder="City, Port"
                   required
                 />
@@ -357,21 +362,23 @@ const RequestQuote2 = () => {
               ) : null}
             </div>
           </div>
-          <div>
-            <label
-              for="phone"
-              class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
-            >
-              Ready to Load <span class="text-[red]">*</span>
-            </label>
-            <input
-              type="date"
-              name="ready_to_load"
-              onChange={(e) => handleChange(e)}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
-              placeholder="Select"
-              required
-            />
+          <div class="grid gap-6 mb-6 md:grid-cols-2">
+            <div>
+              <label
+                for="phone"
+                class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+              >
+                Ready to Load <span class="text-[red]">*</span>
+              </label>
+              <input
+                type="date"
+                name="ready_to_load"
+                onChange={(e) => handleChange(e)}
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                placeholder="Select"
+                required
+              />
+            </div>
           </div>
           <div class="mb-10">
             <label
@@ -384,7 +391,7 @@ const RequestQuote2 = () => {
               type="text"
               name="additional_infromation"
               onChange={(e) => handleChange(e)}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+              class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               placeholder="Write a message..."
             />
           </div>
@@ -401,7 +408,7 @@ const RequestQuote2 = () => {
                 type="text"
                 name="first_name"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 placeholder="First Name"
                 required
               />
@@ -417,7 +424,7 @@ const RequestQuote2 = () => {
                 type="text"
                 name="last_name"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 placeholder="Last Name"
                 required
               />
@@ -436,7 +443,7 @@ const RequestQuote2 = () => {
                 type="number"
                 name="phone"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 placeholder="123-456-7890"
                 required
               />
@@ -452,7 +459,7 @@ const RequestQuote2 = () => {
                 type="email"
                 name="email"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 placeholder="johndoe@gmail.com"
                 required
               />
@@ -464,7 +471,7 @@ const RequestQuote2 = () => {
                 id="remember"
                 type="checkbox"
                 value=""
-                class="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                class="w-4 h-4 bg-white rounded-sm  border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
                 required
               />
             </div>
@@ -482,16 +489,29 @@ const RequestQuote2 = () => {
               .
             </label>
           </div>
-          <button
-            type="submit"
-            class="text-white bg-[#4F46E5] hover:bg-[#4F46E5] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            {isLoading ? (
-              <BeatLoader color="#4F46E5" class="bg-white" />
-            ) : (
-              "Submit"
-            )}
-          </button>
+
+          {isLoading ? (
+            <HashLoader color="#4F46E5" />
+          ) : (
+            <button
+              type="submit"
+              class="text-white bg-[#4F46E5] hover:bg-[#4F46E5] focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+            >
+              Submit
+            </button>
+          )}
+          <ToastContainer
+            position="top-center"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+            theme="light"
+          />
         </div>
       </form>
     </div>

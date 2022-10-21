@@ -209,7 +209,7 @@ export default function Air({ setFormData, formData, handleChange }) {
                     type="number"
                     name="weight"
                     onChange={(e) => handleChange(e)}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                    class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                     placeholder="0"
                     required
                   />
@@ -225,7 +225,7 @@ export default function Air({ setFormData, formData, handleChange }) {
                     type="number"
                     name="volume"
                     onChange={(e) => handleChange(e)}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                    class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                     placeholder="0"
                     required
                   />
@@ -339,7 +339,7 @@ export default function Air({ setFormData, formData, handleChange }) {
               type="number"
               name="containers_quantity"
               onChange={(e) => handleChange(e)}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+              class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               placeholder="0"
               required
             />

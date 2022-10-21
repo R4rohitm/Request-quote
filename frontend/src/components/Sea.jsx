@@ -77,7 +77,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
 
   return (
     <>
-      <div class="grid gap-6 mb-8 md:grid-cols-2">
+      <div class="grid gap-6 mb-6 md:grid-cols-2">
         <Listbox
           id="transportation_by"
           value={selected}
@@ -286,7 +286,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
               type="number"
               name="containers_quantity"
               onChange={(e) => handleChange(e)}
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+              class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               placeholder="0"
               required
             />
@@ -331,7 +331,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
                     type="number"
                     name="weight"
                     onChange={(e) => handleChange(e)}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                    class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                     placeholder="0"
                     required
                   />
@@ -347,7 +347,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
                     type="number"
                     name="volume"
                     onChange={(e) => handleChange(e)}
-                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                    class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                     placeholder="0"
                     required
                   />
@@ -462,7 +462,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
                 type="number"
                 name="gross_weight"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
                 required
               />
             </div>
@@ -479,7 +479,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
                 type="number"
                 name="loading_rate"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               />
             </div>
             <div>
@@ -493,7 +493,7 @@ export default function Sea({ setFormData, formData, handleChange }) {
                 type="number"
                 name="discharging_rate"
                 onChange={(e) => handleChange(e)}
-                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
+                class="bg-white rounded-sm border border-gray-300 text-gray-900 text-sm focus:outline-[#4F46E5] hover:border-[#4F46E5] block w-full p-2.5 mb-2"
               />
             </div>
           </div>
