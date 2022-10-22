@@ -37,11 +37,14 @@ const RequestQuote2 = () => {
     console.log(formData);
     setIsLoading(true);
     try {
-      let response = await fetch(`https://intoglo-first-api.herokuapp.com/quote/create`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      let response = await fetch(
+        `https://intoglo-first-api.herokuapp.com/quote/create`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+        }
+      );
 
       let data = await response.json();
       console.log(data);
@@ -54,9 +57,9 @@ const RequestQuote2 = () => {
     }
   };
 
-  const handleClickProductName = (name, description) => {
+  const handleClickProductName = (name, description, hscode) => {
     if (description) {
-      inputProduct.current = `${name} : ${description}`;
+      inputProduct.current = `${name} : ${description}, ${hscode}`;
     } else {
       inputProduct.current = `${name}`;
     }
@@ -207,7 +210,8 @@ const RequestQuote2 = () => {
                         onClick={() => {
                           handleClickProductName(
                             product.name,
-                            product.description
+                            product.description,
+                            product.hscode
                           );
                           setFormData({
                             ...formData,
@@ -218,7 +222,8 @@ const RequestQuote2 = () => {
                         class="text-sm cursor-pointer text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
                       >
                         <h2>
-                          {product.name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {product.hscode}
+                          {product.name} &nbsp;&nbsp;&nbsp;{" "}
+                          {product.description} &nbsp; {product.hscode}
                         </h2>
                       </div>
                     );
