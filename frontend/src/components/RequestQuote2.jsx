@@ -37,7 +37,7 @@ const RequestQuote2 = () => {
     console.log(formData);
     setIsLoading(true);
     try {
-      let response = await fetch(`http://localhost:8060/quote/create`, {
+      let response = await fetch(`https://intoglo-first-api.herokuapp.com/quote/create`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -218,7 +218,7 @@ const RequestQuote2 = () => {
                         class="text-sm cursor-pointer text-gray-900 font-medium px-6 py-4 whitespace-nowrap"
                       >
                         <h2>
-                          {product.name} : {product.description}
+                          {product.name} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; {product.hscode}
                         </h2>
                       </div>
                     );

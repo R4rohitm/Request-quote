@@ -60,7 +60,7 @@ const Posts = ({ posts }) => {
                                  </tr>
                                  <tr>
                                  <td>Product Discription</td>
-                                 <td>{e.product_details.discription}</td>
+                                 <td>{e.product_details.description}</td>
                                  </tr>
                                  <tr>
                                  <td>HS Code</td>
@@ -111,12 +111,18 @@ const Posts = ({ posts }) => {
                                  <td>{e.associated_services}</td>
                                  </tr> */}
                                 {e.by_units ? <>
+                                  { e.dimensions.map((c)=>{
+                                  return(
+                                    <>
                                        <>
                                        <tr>
                                        <td>Dimensions</td>
-                                       <td>Width : {e.dimensions.width} &nbsp;&nbsp;&nbsp; Height : {e.dimensions.height} &nbsp;&nbsp;&nbsp; Length : {e.dimensions.length} &nbsp;&nbsp;&nbsp; Quantity : {e.dimensions.quantity} &nbsp;&nbsp;&nbsp; Gross Weight : {e.dimensions.gross_weight}</td>
+                                       <td>Width : {c.width} &nbsp;&nbsp;&nbsp; Height : {c.height} &nbsp;&nbsp;&nbsp; Length : {c.length} &nbsp;&nbsp;&nbsp; Quantity : {c.quantity} &nbsp;&nbsp;&nbsp; Gross Weight : {c.gross_weight}</td>
                                        </tr>
                                        </>
+                                    </>
+                                  )
+                                })} 
                                 </>:<>
                                 <tr>
                                 <td>Dimensions</td>
