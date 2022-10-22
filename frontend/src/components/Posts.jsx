@@ -87,6 +87,10 @@ const Posts = ({ posts }) => {
                                  <td>{e.container_type}</td>
                                  </tr>
                                  <tr>
+                                 <td>Container Quantity</td>
+                                 <td>{e.containers_quantity}</td>
+                                 </tr>
+                                 <tr>
                                  <td>Weight</td>
                                  <td>{e.weight}mt</td>
                                  </tr>
